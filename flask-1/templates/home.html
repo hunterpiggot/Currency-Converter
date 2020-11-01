@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}   
+    {% endwith %}         
+    <form action="/currency-check" method="POST">
+        Converting from <input type="text" maxlength="3" id="convert-from" name="c-from">
+        Converting to <input type="text" maxlength="3" id="convert-to" name="c-to">
+        Amount <input type="text" id="amount" name="amount">
+        <button>Convert</button>
+    </form>
+    {% if symbol and amount %}
+    <p>The result is {{symbol}}{{amount}}</p>
+    {% endif %}
+</body>
+</html>
